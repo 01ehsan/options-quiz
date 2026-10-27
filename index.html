@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- © 2026 گروه معامله‌گری بتا آپشن. همه حقوق محفوظ است. -->
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
@@ -7,7 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>بتا آپشن</title>
+<title>کوییز اختیار معامله</title>
 <style>
 :root{
   --bg:#f5f7f8; --card:#ffffff; --text:#1b2428; --muted:#66757c; --line:#dfe5e8;
@@ -92,7 +93,7 @@ h1{font-size:19px;margin:6px 0 12px}
 const S = [
  {id:'bullcall', g:'spread', fa:'بول کال اسپرد', en:'Bull Call Spread',
   legs:'خرید کال با اعمال پایین و فروش کال با اعمال بالا',
-  view:'صعودی (رشد ملایم قیمت)', cost:'با پرداخت پول باز می‌شود (دبیت)',
+  view:'صعودی (رشد ملایم قیمت)', vs:'صعودی', cost:'با پرداخت پول باز می‌شود (دبیت)',
   profit:'فاصله دو اعمال منهای مبلغ پرداختی', loss:'فقط مبلغ پرداختی', lk:'paid'},
  {id:'bearcall', g:'spread', fa:'بر کال اسپرد', en:'Bear Call Spread',
   legs:'فروش کال با اعمال پایین و خرید کال با اعمال بالا',
@@ -200,7 +201,7 @@ function card(s){
   return '<div class="hd"><span class="n">'+s.fa+'</span><span class="e">'+s.en+'</span></div>'+
    '<div class="info">'+
    '<div><span>موقعیت‌ها: </span>'+s.legs+'</div>'+
-   '<div><span>دیدگاه: </span>'+s.view+'</div>'+
+   '<div><span>دیدگاه: </span>'+(s.vs||s.view)+'</div>'+
    '<div><span>شروع: </span>'+s.cost+'</div>'+
    '<div><span>حداکثر سود: </span>'+s.profit+'</div>'+
    '<div><span>حداکثر ضرر: </span>'+s.loss+'</div></div>';
@@ -322,7 +323,7 @@ function finish(){
 
 /* ---------- خلاصه استراتژی‌ها ---------- */
 function renderSheet(){
-  $('sheet').innerHTML = '<div class="card info">مثل مرور سریع: ابتدا اینجا را بخوان، بعد آزمون بده. «اعمال» یعنی قیمت اعمال (Strike).</div>' +
+  $('sheet').innerHTML = '<div class="card info">منظور از اعمال، قیمت اعمال سهم یا strike است</div>' +
     S.map(s => '<div class="card">'+card(s)+'</div>').join('');
 }
 
